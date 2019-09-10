@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>full screen navigation</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<style type="text/css">
+		/*reset*/
+		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+		body { line-height: 1; background: #fff;}
+		ol, ul { list-style: none;}
+		blockquote, q { quotes: none;}
+		blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+		table { border-collapse: collapse; border-spacing: 0; }
+		/*resets*/
+		html { font-size: 12px;}
+		h1, h2, h3, h4, h5, h6, p, a, button, table, div, ul, li, textarea, input { font-family: 'Nunito', sans-serif, '微軟正黑體'; }
+		a { text-decoration: none; outline: none; /* for Firefox Google Chrome  */  behavior:expression(this.onFocus=this.blur()); /* for IE */}
+		input[type=submit],input[type=reset],input[type=button],input[type=text],input[type=password],textarea{-webkit-appearance:none;}
+		:focus { outline: none; }		
+
+		/*style*/
+		body{background: url(bg.jpg) no-repeat 0 -150px; background-size: cover;}
+		.btn-area{width: 100%; height: 100%; position: fixed;}
+		.btn-area button{background: #ffde00; width: 180px; height: 180px; border:none; color: #222; border-radius: 50%; font-size: 28px; cursor: pointer; -webkit-transition:.4s; transition:.4s; display: block; position: absolute; left: 50%; top: 50%; margin: -90px 0 0 -90px;}
+		.btn-area button:hover{color: #fff;}
+		.menu{width: 100%; height: 0%; display: none; position: absolute; left: 0px; top: 0px; background: rgba(255,222,0,.75);}
+		.menu ul{position: absolute; z-index: 99; text-align: center; left: 50%; top: 50%; margin: -142px 0 0 -88px;}
+		.menu ul li{color: #333; font-size: 36px; margin-bottom: 35px; cursor: pointer; -webkit-transition:.4s; transition:.4s;}
+		.menu ul li:hover{color: #fff;}
+		.menu .close{position: absolute; z-index: 99; right: 80px; top: 60px; color: #333; font-size: 72px; -webkit-transition:.4s; transition:.4s;}
+		.menu .close:hover{color: #fff;}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$('.close').click(function(){
+				$('.menu').animate({'height':'0%'},600);
+				$('.menu ul').fadeOut(600)	
+				$(this).fadeOut(400);
+				if($('.menu').is(':animated')){
+					$('.btn-area button').animate({'opacity':'1','display':'block'},400);
+				}
+			});
+
+			$('.btn-area button').click(function(){
+				$('.menu').show().animate({'height':'100%'},600);
+				$('.menu ul').fadeIn(600)
+				$('.close').fadeIn(400);
+				if($('.menu').is(':animated')){
+					$(this).animate({'opacity':'0','display':'none'},400);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="btn-area">
+		<button>MENU</button>
+	</div>
+	<div class="menu">
+		<a class="close" href="javascript:;">x</a>
+		<ul>
+			<li>ABOUT</li>
+			<li>SERVICE</li>
+			<li>PRODUCT</li>
+			<li>CONTACT</li>
+		</ul>
+	</div>
+</body>
+</html>
